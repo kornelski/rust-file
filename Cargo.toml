@@ -1,0 +1,6 @@
+[package]
+name = "file"
+version = "0.1.0"
+authors = ["Kornel Lesiński <kornel@geekhood.net>"]
+description = "Convenience functions file::get() and file::put()"
+license = "MIT"
