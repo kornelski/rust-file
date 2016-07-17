@@ -8,6 +8,9 @@ use std::io::{Read, Write};
 pub fn get<P: AsRef<Path>>(path: P) -> io::Result<Vec<u8>> {
     let mut file = try!(File::open(path));
     let mut data = Vec::new();
+    if let Ok(meta) = file.metadata() {
+        data.reserve(meta.len() as usize); // Safe to truncate, since it's only a suggestion
+    }
     try!(file.read_to_end(&mut data));
     Ok(data)
 }
