@@ -40,6 +40,7 @@ fn it_works() {
     let data = vec![0u8,1,2,3];
     put(&tmp_name, &data).unwrap();
     assert_eq!(data, get(&tmp_name).unwrap());
+    put(&tmp_name, data).unwrap();
 
     std::fs::remove_file(tmp_name).ok();
 }
