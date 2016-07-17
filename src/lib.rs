@@ -1,10 +1,11 @@
 use std::fs::File;
 use std::path::Path;
-use std::io::{Read, Write, Error};
+use std::io;
+use std::io::{Read, Write};
 
 /// Read a file into `Vec<u8>` from the given path.
 /// The path can be a string or a `Path`.
-pub fn get<P: AsRef<Path>>(path: P) -> Result<Vec<u8>, Error>{
+pub fn get<P: AsRef<Path>>(path: P) -> io::Result<Vec<u8>> {
     let mut file = try!(File::open(path));
     let mut data = Vec::new();
     try!(file.read_to_end(&mut data));
@@ -14,7 +15,7 @@ pub fn get<P: AsRef<Path>>(path: P) -> Result<Vec<u8>, Error>{
 /// Creates a file at the given path with contents of `Vec<u8>` or `&[u8]`, etc.
 /// Overwrites, non-atomically, if the file exists.
 /// The path can be a string or a `Path`.
-pub fn put<P: AsRef<Path>, Bytes: AsRef<[u8]>>(path: P, data: Bytes) -> Result<(), Error> {
+pub fn put<P: AsRef<Path>, Bytes: AsRef<[u8]>>(path: P, data: Bytes) -> io::Result<()> {
     let mut file = try!(File::create(path));
     try!(file.write_all(data.as_ref()));
     Ok(())
