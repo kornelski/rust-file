@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["get","Read a file into `Vec<u8>` from the given path. The path can be a string or a `Path`."],["put","Creates a file at the given path with contents of `Vec<u8>` or `&[u8]`, etc. Overwrites, non-atomically, if the file exists. The path can be a string or a `Path`."]]});
