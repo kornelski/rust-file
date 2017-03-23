@@ -6,12 +6,12 @@ use std::io::{Read, Write};
 /// Read a file into `Vec<u8>` from the given path.
 /// The path can be a string or a `Path`.
 pub fn get<P: AsRef<Path>>(path: P) -> io::Result<Vec<u8>> {
-    let mut file = try!(File::open(path));
+    let mut file = File::open(path)?;
     let mut data = Vec::new();
     if let Ok(meta) = file.metadata() {
         data.reserve(meta.len() as usize); // Safe to truncate, since it's only a suggestion
     }
-    try!(file.read_to_end(&mut data));
+    file.read_to_end(&mut data)?;
     Ok(data)
 }
 
@@ -19,8 +19,8 @@ pub fn get<P: AsRef<Path>>(path: P) -> io::Result<Vec<u8>> {
 /// Overwrites, non-atomically, if the file exists.
 /// The path can be a string or a `Path`.
 pub fn put<P: AsRef<Path>, Bytes: AsRef<[u8]>>(path: P, data: Bytes) -> io::Result<()> {
-    let mut file = try!(File::create(path));
-    try!(file.write_all(data.as_ref()));
+    let mut file = File::create(path)?;
+    file.write_all(data.as_ref())?;
     Ok(())
 }
 
