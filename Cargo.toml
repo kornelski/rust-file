@@ -1,9 +1,10 @@
 [package]
 name = "file"
-version = "1.1.0"
+version = "1.1.1"
 authors = ["Kornel Lesiński <kornel@geekhood.net>"]
 description = "1-liner convenience functions for reading and writing files"
 license = "MIT"
 repository = "https://github.com/pornel/rust-file.git"
 readme = "README.md"
+categories = ["rust-patterns"]
 documentation = "https://pornel.github.io/rust-file/file/"
