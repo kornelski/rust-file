@@ -25,7 +25,7 @@ extern crate file;
 
 fn example() -> file::Result<()> {
     let string = file::get_text("hello.txt")?;
-    file::put("bye.txt", &string)?;
+    file::put_text("bye.txt", &string)?;
     Ok(())
 }
 ```
